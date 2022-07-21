@@ -1,34 +1,20 @@
 import "./App.css";
+import { useState } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Tasks from "./components/Tasks";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import AddTaskForm from "./components/AddTaskForm";
+import About from "./components/About";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "To Do App",
-      date: "2015-01-01T00:00:00.000Z",
-      reminder: false,
-      done: false,
-    },
-    {
-      id: 2,
-      title: "To Do App",
-      date: "2015-01-01T00:00:00.000Z",
-      reminder: false,
-      done: false,
-    },
-    {
-      id: 3,
-      title: "To Do App",
-      date: "2015-01-01T00:00:00.000Z",
-      reminder: false,
-      done: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
   const [showAddTask, setShowAddTask] = useState(false);
+  const onAddTask = (task) => {
+    const id = Math.floor(Math.random() * 1000) + 1;
+    const newTask = { id, ...task, done: false };
+    setTasks([...tasks, newTask]);
+  };
   const onDelete = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -54,13 +40,29 @@ function App() {
         onAdd={() => setShowAddTask(!showAddTask)}
         showBtn={showAddTask}
       />
-      <Navbar />
-      <Tasks
-        onDelete={onDelete}
-        tasks={tasks}
-        onDone={onDone}
-        setReminder={setReminder}
-      />
+      <AddTaskForm onAddTask={showAddTask} onAdd={onAddTask} />
+
+      {!showAddTask && (
+        <>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Tasks
+                    onDelete={onDelete}
+                    tasks={tasks}
+                    onDone={onDone}
+                    setReminder={setReminder}
+                  />
+                </>
+              }
+            />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }
