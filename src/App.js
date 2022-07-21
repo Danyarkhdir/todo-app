@@ -34,7 +34,7 @@ function App() {
     );
   };
   return (
-    <div className="max-w-2xl my-8 mx-auto min-h-screen p-8 border-2 border-sky-800 rounded-3xl">
+    <div className="lg:max-w-2xl md:max-w-lg sm:max-w-md xs:max-w-sm my-8   max-w-sm p-8 mx-auto min-h-screen  border-2 border-sky-800 rounded-3xl">
       <Header
         title="To Do App"
         onAdd={() => setShowAddTask(!showAddTask)}
