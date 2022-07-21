@@ -1,10 +1,12 @@
 import { MdAddTask } from "react-icons/md";
-export default function Button({ text }) {
+import { AiFillCloseCircle } from "react-icons/ai";
+export default function Button({ text, color, onClick, showIcon }) {
   return (
     <button
-      className={`bg-green-400  font-bold py-2 px-4 rounded-xl inline-flex items-center`}
+      className={`${color}  text-white font-bold py-2 px-4 rounded-xl inline-flex items-center`}
+      onClick={onClick}
     >
-      <MdAddTask color="black" />
+      {showIcon === false ? <AiFillCloseCircle /> : <MdAddTask />}
       <span className="ml-2">{text}</span>
     </button>
   );
