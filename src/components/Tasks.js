@@ -14,7 +14,7 @@ export default function Tasks({ onDelete, tasks, onDone, setReminder }) {
           />
         ))
       ) : (
-        <h1 className="text-center my-20 text-5xl flex items-center justify-center ">
+        <h1 className="text-center my-20 text-2xl flex items-center justify-center md:text-3xl lg:text-4xl xl:text-5xl  ">
           No Tasks To Do <FaSadCry color="#ffcc33" className="ml-4" />
         </h1>
       )}
