@@ -9,6 +9,10 @@ export default function AddTaskForm({ onAddTask, onAdd }) {
       alert("Please enter a task");
       return;
     }
+    if (!date) {
+      alert("Please enter the date");
+      return;
+    }
     onAdd({ title, date, reminder });
     setTitle("");
     setDate("");
